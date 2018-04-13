@@ -1,0 +1,250 @@
+<html>
+<head>
+	<title>
+			Calculator
+	</title>
+	<script>
+		var a = [0, 0];
+	</script>
+	<style>
+		body {
+				background-image: url("calback.jpg");
+			}
+						
+		.button {
+					width: 100%;
+					background-color: green;
+					border: none;
+					color: white;
+					padding: 15px 32px;
+					text-align: center;
+					text-decoration: none;
+					display: inline-block;
+					font-size: 30px;
+					font-weight: bold;
+					border-radius: 8px;
+					box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+				}
+				
+		#zero{
+				text-align:right;
+			}
+			
+		input[type=number], select {
+									text-align: right;
+									width: 100%;
+									padding: 12px 20px;
+									margin: 8px 0;
+									display: inline-block;
+									border: 1px solid #ccc;
+									border-radius: 4px;
+									box-sizing: border-box;
+									box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+								}
+								
+		.button:hover {background-color: #3e8e41}
+
+		.button:active {
+						  background-color: #3e8e41;
+						  box-shadow: 0 5px #666;
+						  transform: translateY(4px);
+						}
+		table {
+				border-radius: 8px;
+				background-image: url("back.jpg");
+				border-spacing: 20px;
+			}
+	</style>
+</head>
+<body>
+<br><br><br><br><br><br><br>
+	<table align = "center">
+		<tr>
+			<td colspan="4"><input type="number" id="in" value="0"></td>
+		</tr>
+		<tr>
+			<td colspan="4"><br><br></td>
+		</tr>
+		<tr>
+			<td colspan = "2"> 
+				<input type="button" class="button" id="clear" value="C" onclick="document.getElementById('in').value='';
+													a[0] = 0; a[1] = 0; a[2] = 0; a[3] = 0; a[4] = 0; a[5] = 0; a[6] = 0;">
+			</td>
+			<td colspan = "2">
+				<input type="button" class="button" id="back" value="CE" onclick="temp=document.getElementById('in').value;
+																					temp /= 10;
+																				document.getElementById('in').value= Math.floor(temp);">
+			</td>
+		<tr>
+				<td>
+					<input type="button" class="button" id="one" value="1" onclick="temp=document.getElementById('in').value;
+																					document.getElementById('in').value= temp*10+1;">
+				</td>
+				<td>
+					<input type="button" class="button" id="two" value="2" onclick="temp=document.getElementById('in').value;
+																					document.getElementById('in').value= temp*10+2;">
+				</td>
+				<td>
+					<input type="button" class="button" id="three" value="3" onclick="temp=document.getElementById('in').value;
+																					document.getElementById('in').value= temp*10+3;">
+				</td>
+				<td>
+					<input type="button" class="button" id="equals" value="=" onclick="disp()">
+				</td>
+		</tr>
+		<tr>
+				<td>
+					<input type="button" class="button" id="four" value="4" onclick="temp=document.getElementById('in').value;
+																					document.getElementById('in').value= temp*10+4;">
+				</td>
+				<td>
+					<input type="button" class="button" id="five" value="5" onclick="temp=document.getElementById('in').value;
+																					document.getElementById('in').value= temp*10+5;">
+				</td>
+				<td>
+					<input type="button" class="button" id="six" value="6" onclick="temp=document.getElementById('in').value;
+																					document.getElementById('in').value= temp*10+6;">
+				</td>
+				<td>
+					<input type="button" class="button" id="plus" value="+" onclick="add();" >
+				</td>
+		</tr>
+		<tr>
+				<td>
+					<input type="button" class="button" id="seven" value="7" onclick="temp=document.getElementById('in').value;
+																					document.getElementById('in').value= temp*10+7;">
+				</td>
+				<td>
+					<input type="button" class="button" id="eight" value="8" onclick="temp=document.getElementById('in').value;
+																					document.getElementById('in').value= temp*10+8;">
+				</td>
+				<td>
+					<input type="button" class="button" id="nine" value="9" onclick="temp=document.getElementById('in').value;
+																					document.getElementById('in').value= temp*10+9;">
+				</td>
+				<td>
+					<input type="button" class="button" id="minus" value="-" onclick="subtract();">
+				</td>
+		</tr>
+		<tr>
+				<td colspan="2">
+					<input type="button" class="button" id="zero" value="0" onclick="temp=document.getElementById('in').value;
+																					document.getElementById('in').value= temp*10;">
+				</td>
+				<td>
+					<input type="button" class="button" id="multi" value="x" onclick="mul();">
+				</td>
+				<td>
+					<input type="button" class="button" id="divi" value="/" onclick="divi();">
+				</td>
+		</tr>
+	</table>
+	<script>
+	var a = [0, 0, 0, 0, 0, 0, 0];
+	var p = 0; 
+	function add()
+	{
+		if( a[6] != 0)
+		{	
+			a[1] = document.getElementById('in').value;
+			a[0] =Number(a[0]) + Number(a[1]);
+			document.getElementById('in').value = "";
+		}
+		else
+		{
+			a[6] = 1;
+			a[0] = document.getElementById('in').value;
+			document.getElementById('in').value = "";
+		}
+		a[2] = 1;
+		a[3] = 0;
+		a[4] = 0;
+		a[5] = 0;
+	}
+	function subtract()
+	{
+		if( a[6] != 0)
+		{
+			a[1] = document.getElementById('in').value;
+			a[0] = a[0] - a[1];
+			document.getElementById('in').value = "";
+		}
+		else
+		{
+			a[6] = 1;
+			a[0] = document.getElementById('in').value;
+			document.getElementById('in').value = "";
+		}
+		a[2] = 0;
+		a[3] = 1;
+		a[4] = 0;
+		a[5] = 0;
+	}
+	function mul()
+	{
+			if( a[6] != 0)
+			{
+				a[1] = document.getElementById('in').value;
+				a[0] = a[0] * a[1];
+				document.getElementById('in').value = "";
+			}
+			else
+			{
+				a[6] = 1;
+				a[0] = document.getElementById('in').value;
+				document.getElementById('in').value = "";
+			}
+			a[2] = 0;
+			a[3] = 0;
+			a[4] = 1;
+			a[5] = 0;
+	}
+	function divi()
+	{
+			if( a[6] != 0)
+			{
+				a[1] = document.getElementById('in').value;
+				a[0] = a[0] / a[1];
+				document.getElementById('in').value = "";
+			}
+			else
+			{
+				a[6] = 1;
+				a[0] = document.getElementById('in').value;
+				document.getElementById('in').value = "";
+			}
+			a[2] = 0;
+			a[3] = 0;
+			a[4] = 0;
+			a[5] = 1;
+	}
+	function disp()
+	{
+		if(a[2] == 1)
+		{
+			add();
+		}
+		else if(a[3] == 1)
+		{
+			subtract();
+		}
+		else if(a[4] == 1)
+		{
+			mul();
+		}
+		else if(a[5] == 1)
+		{
+			divi();
+		}
+		document.getElementById('in').value=a[0];
+		a[0] = 0;
+		a[1] = 0;
+		a[2] = 0;
+		a[3] = 0;
+		a[4] = 0;
+		a[5] = 0;
+		a[6] = 0;
+	}
+	</script>
+</body>
+</html>
